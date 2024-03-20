@@ -1,10 +1,10 @@
-# Enedina: Combinando Diferentes Tipos de Entrada com Decodificador Transformer
+# Enedina: Grande Modelo de Linguagem Multimodal
 
 Este repositório contém uma Prova de Conceito (PoC) de um modelo chamado Enedina, que combina diferentes tipos de entrada (texto, imagem, equação e diagrama) usando um decodificador Transformer com atenção cruzada.
 
 ## Visão Geral
 
-O EnedinaModel é projetado para processar e integrar informações de várias modalidades, como texto, imagem, equação e diagrama. Ele usa componentes modulares para processar cada tipo de entrada e gerar embeddings correspondentes. Em seguida, os embeddings são concatenados e passados para um decodificador Transformer com atenção cruzada, que captura as dependências e interações entre as diferentes entradas.
+O Enedina é projetado para processar e integrar informações de várias modalidades, como texto, imagem, equação e diagrama. Ele usa componentes modulares para processar cada tipo de entrada e gerar embeddings correspondentes. Em seguida, os embeddings são concatenados e passados para um decodificador Transformer com atenção cruzada, que captura as dependências e interações entre as diferentes entradas.
 
 ## Arquitetura do Modelo
 
