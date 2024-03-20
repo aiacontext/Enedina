@@ -1,4 +1,4 @@
-# EnedinaModel: Combinando Diferentes Tipos de Entrada com Decodificador Transformer
+# Enedina: Combinando Diferentes Tipos de Entrada com Decodificador Transformer
 
 Este repositório contém uma Prova de Conceito (PoC) de um modelo chamado Enedina, que combina diferentes tipos de entrada (texto, imagem, equação e diagrama) usando um decodificador Transformer com atenção cruzada.
 
