@@ -1,3 +1,10 @@
+---
+language: pt
+license: mit
+title: Aia Context
+short_description: Aia é uma startup brasileira de IA
+---
+
 # Enedina: Grande Modelo de Linguagem Multimodal
 
 Este repositório contém uma Prova de Conceito (PoC) de um modelo chamado Enedina, que combina diferentes tipos de entrada (texto, imagem, equação e diagrama) usando um decodificador Transformer com atenção cruzada.
@@ -8,7 +15,7 @@ O Enedina é projetado para processar e integrar informações de várias modali
 
 ## Arquitetura do Modelo
 
-A arquitetura do EnedinaModel consiste nos seguintes componentes principais:
+A arquitetura do Enedina consiste nos seguintes componentes principais:
 
 - `TextEmbedding`: Uma camada de embedding para processar entradas de texto.
 - `GenericProcessor`: Um processador genérico para transformar entradas numéricas em embeddings.
@@ -16,11 +23,11 @@ A arquitetura do EnedinaModel consiste nos seguintes componentes principais:
 
 ## Uso
 
-Para usar o EnedinaModel, siga estas etapas:
+Para usar o Enedina, siga estas etapas:
 
-1. Clone este repositório:
+1. Clone o repositório:
    ```
-   git clone https://github.com/seu-usuario/enedina-model.git
+   git clone https://github.com/leitaofilho/EnedinaModel_PoC.git
    ```
 
 2. Instale as dependências necessárias:
