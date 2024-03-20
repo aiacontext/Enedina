@@ -1,10 +1,3 @@
----
-language: pt
-license: mit
-title: Aia Context
-short_description: Aia é uma startup brasileira de IA
----
-
 # Enedina: Grande Modelo de Linguagem Multimodal
 
 Este repositório contém uma Prova de Conceito (PoC) de um modelo chamado Enedina, que combina diferentes tipos de entrada (texto, imagem, equação e diagrama) usando um decodificador Transformer com atenção cruzada.
