@@ -20,7 +20,7 @@ Para usar o Enedina, siga estas etapas:
 
 1. Clone o repositório:
    ```
-   git clone https://github.com/leitaofilho/EnedinaModel_PoC.git
+   git clone https://github.com/leitaofilho/Enedina.git
    ```
 
 2. Instale as dependências necessárias:
