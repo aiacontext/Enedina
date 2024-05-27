@@ -14,6 +14,7 @@ A linha elástica da viga é dada pela equação da curvatura sob a ação de um
 $$
 EI \frac{d^4 y}{dx^4} = w 
 $$
+
 onde \( EI \) é o produto da rigidez à flexão pela inércia da área da seção transversal, \( y \) é a deflexão da viga, e \( w \) é a carga por unidade de comprimento.
 
 ### Esforço Cortante (V)
