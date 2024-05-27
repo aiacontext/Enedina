@@ -2,14 +2,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-
-# Definição de uma camada de embedding com atenção esparsa para texto
 class SparseTextEmbedding(nn.Module):
     """
     Camada de embedding para texto com atenção multi-cabeça.
     Realiza embeddings de tokens de texto e aplica atenção multi-cabeça.
     """
-
     def __init__(self, num_tokens, emb_dim):
         super().__init__()
         self.embedding = nn.Embedding(num_tokens, emb_dim)
@@ -20,14 +17,11 @@ class SparseTextEmbedding(nn.Module):
         x, _ = self.attention(x, x, x)
         return x
 
-
-# Processador genérico para transformar entradas numéricas em embeddings
 class GenericProcessor(nn.Module):
     """
     Processador genérico que transforma entradas numéricas em embeddings.
     Utiliza uma camada linear seguida por uma ativação ReLU.
     """
-
     def __init__(self, input_dim, emb_dim):
         super().__init__()
         self.fc = nn.Linear(input_dim, emb_dim)
@@ -35,14 +29,11 @@ class GenericProcessor(nn.Module):
     def forward(self, x):
         return F.relu(self.fc(x))
 
-
-# Especialista em transformador para domínios específicos
 class TransformerExpert(nn.Module):
     """
     Especialista em domínio específico usando um encoder Transformer.
     Projetado para processar embeddings e realizar tarefas específicas de domínio.
     """
-
     def __init__(self, emb_dim, num_heads, num_layers, ff_dim):
         super().__init__()
         transformer_layer = nn.TransformerEncoderLayer(d_model=emb_dim, nhead=num_heads, dim_feedforward=ff_dim)
@@ -51,14 +42,11 @@ class TransformerExpert(nn.Module):
     def forward(self, x):
         return self.transformer_encoder(x)
 
-
-# Decodificador Transformer com atenção cruzada
 class TransformerDecoderWithCrossAttention(nn.Module):
     """
     Decodificador Transformer com atenção cruzada.
     Combina informações de múltiplas fontes e projeta o resultado final.
     """
-
     def __init__(self, emb_dim, num_heads, num_layers, ff_dim):
         super().__init__()
         transformer_layer = nn.TransformerDecoderLayer(d_model=emb_dim, nhead=num_heads, dim_feedforward=ff_dim)
@@ -69,35 +57,30 @@ class TransformerDecoderWithCrossAttention(nn.Module):
         output = self.transformer_decoder(x, memory)
         return self.projection(output)
 
-
-# Modelo principal que incorpora os componentes acima
 class EnedinaModel(nn.Module):
     """
     Modelo principal: Enedina.
     Integra diferentes componentes especializados para processar múltiplos tipos de entrada.
     """
-
-    def __init__(self, text_num_tokens, image_input_dim, equation_input_dim, diagram_input_dim, emb_dim=1024,
+    def __init__(self, text_num_tokens, image_input_dim, equation_input_dim, emb_dim=1024,
                  num_heads=16, num_layers=12, ff_dim=4096):
         super().__init__()
         self.text_embedding = SparseTextEmbedding(text_num_tokens, emb_dim)
         self.image_processor = GenericProcessor(image_input_dim, emb_dim)
         self.equation_processor = GenericProcessor(equation_input_dim, emb_dim)
-        self.diagram_processor = GenericProcessor(diagram_input_dim, emb_dim)
         self.experts = nn.ModuleList([
-            TransformerExpert(emb_dim, num_heads, num_layers, ff_dim) for _ in range(4)
+            TransformerExpert(emb_dim, num_heads, num_layers, ff_dim) for _ in range(3)  # Text, Image, Equation
         ])
-        self.gate = nn.Linear(emb_dim * 4, 4)
+        self.gate = nn.Linear(emb_dim * 3, 3)
         self.transformer_decoder = TransformerDecoderWithCrossAttention(emb_dim, num_heads, num_layers, ff_dim)
 
-    def forward(self, text_input, image_input, equation_input, diagram_input):
+    def forward(self, text_input, image_input, equation_input):
         text_emb = self.text_embedding(text_input)
         image_emb = self.image_processor(image_input).unsqueeze(1)
         equation_emb = self.equation_processor(equation_input).unsqueeze(1)
-        diagram_emb = self.diagram_processor(diagram_input).unsqueeze(1)
 
         # Estrutura dos especialistas
-        expert_inputs = [equation_emb, image_emb, diagram_emb, text_emb]
+        expert_inputs = [text_emb, image_emb, equation_emb]
         expert_outputs = []
         for i, expert in enumerate(self.experts):
             expert_output = expert(expert_inputs[i].permute(1, 0, 2))
@@ -125,24 +108,21 @@ class EnedinaModel(nn.Module):
 text_num_tokens = 200000
 image_input_dim = 2048
 equation_input_dim = 1024
-diagram_input_dim = 1024
 batch_size = 4
 text_seq_len = 1000
 image_seq_len = 10
 equation_seq_len = 5
-diagram_seq_len = 5
 
 # Inicializa o modelo
-model = EnedinaModel(text_num_tokens, image_input_dim, equation_input_dim, diagram_input_dim)
+model = EnedinaModel(text_num_tokens, image_input_dim, equation_input_dim)
 
 # Gera entradas simuladas
 text_input = torch.randint(0, text_num_tokens, (batch_size, text_seq_len))
 image_input = torch.randn(batch_size, image_input_dim)
 equation_input = torch.randn(batch_size, equation_input_dim)
-diagram_input = torch.randn(batch_size, diagram_input_dim)
 
 # Executa o modelo com as entradas simuladas
-output = model(text_input, image_input, equation_input, diagram_input)
+output = model(text_input, image_input, equation_input)
 
 # Verifica a forma da saída
 print("A forma de saída do tensor é:", output.shape)
