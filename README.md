@@ -1,6 +1,6 @@
 # Enedina: Grande Modelo de Linguagem Multimodal
 
-Este repositório contém a implementação avançada do LLM Enedina, um modelo de linguagem grande e multimodal que integra processamento de texto, imagem e equações usando um decodificador Transformer com atenção cruzada.
+Este repositório hospeda a Prova de Conceito (PoC) do LLM multimodal Enedina, que é capaz de integrar entradas de texto, imagem e equações utilizando uma arquitetura avançada baseada em Transformers com atenção cruzada.
 
 ## Visão Geral
 
