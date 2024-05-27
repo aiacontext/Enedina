@@ -1,22 +1,28 @@
 # Enedina: Grande Modelo de Linguagem Multimodal
 
-Este repositório contém uma Prova de Conceito (PoC) de um modelo chamado Enedina, que combina diferentes tipos de entrada (texto, imagem, equação e diagrama) usando um decodificador Transformer com atenção cruzada.
+Este repositório contém a implementação avançada do LLM Enedina, um modelo de linguagem grande e multimodal que integra processamento de texto, imagem e equações usando um decodificador Transformer com atenção cruzada.
 
 ## Visão Geral
 
-O Enedina é projetado para processar e integrar informações de várias modalidades, como texto, imagem, equação e diagrama. Ele usa componentes modulares para processar cada tipo de entrada e gerar embeddings correspondentes. Em seguida, os embeddings são concatenados e passados para um decodificador Transformer com atenção cruzada, que captura as dependências e interações entre as diferentes entradas.
+O Enedina é projetado para processar e integrar informações de múltiplas modalidades. Utilizando uma arquitetura modular, ele transforma entradas de texto, imagem e equações em embeddings, que são posteriormente processados para capturar interações complexas entre estas modalidades através de um decodificador Transformer com atenção cruzada.
 
 ## Arquitetura do Modelo
 
-A arquitetura do Enedina consiste nos seguintes componentes principais:
+A arquitetura do Enedina foi significativamente refatorada para melhorar a modularidade e a robustez. Ela consiste nos seguintes componentes principais:
 
-- `TextEmbedding`: Uma camada de embedding para processar entradas de texto.
-- `GenericProcessor`: Um processador genérico para transformar entradas numéricas em embeddings.
-- `TransformerDecoderWithCrossAttention`: Um decodificador Transformer com atenção cruzada para processar os embeddings concatenados.
+- `TextEmbedding`: Processa entradas de texto utilizando embeddings e atenção multi-cabeça.
+- `ImageProcessor`: Transforma entradas de imagem em embeddings numéricos.
+- `EquationProcessor`: Converte equações em formato simbólico para representações numéricas.
+- `TransformerExpert`: Cada modalidade é processada por um expert especializado antes de ser combinada.
+- `TransformerDecoderWithCrossAttention`: Integra as saídas dos diferentes processadores, utilizando atenção cruzada para entender as interações entre as modalidades.
+
+### Estrutura de Diretórios
+
+O projeto foi organizado em uma estrutura de diretórios modularizada que facilita a manutenção e a expansão.
 
 ## Uso
 
-Para usar o Enedina, siga estas etapas:
+Para utilizar o modelo Enedina, siga estas etapas:
 
 1. Clone o repositório:
    ```
@@ -32,17 +38,15 @@ Para usar o Enedina, siga estas etapas:
    ```python
    from enedina_model import EnedinaModel
 
-   model = EnedinaModel(text_num_tokens, image_input_dim, equation_input_dim, diagram_input_dim)
+   model = EnedinaModel(text_num_tokens, image_input_dim, equation_input_dim)
    ```
 
-4. Prepare suas entradas (texto, imagem, equação e diagrama) no formato adequado.
+4. Prepare suas entradas (texto, imagem e equação) no formato adequado.
 
 5. Passe as entradas para o modelo e obtenha a saída:
    ```python
-   output = model(text_input, image_input, equation_input, diagram_input)
+   output = model(text_input, image_input, equation_input)
    ```
-
-Para obter mais detalhes sobre os parâmetros e a configuração do modelo, consulte o código-fonte e a documentação neste repositório.
 
 ## Contribuição
 
