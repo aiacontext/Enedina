@@ -4,9 +4,9 @@ O Teorema de Castigliano, também conhecido como o segundo teorema de Castiglian
 
 ## Formulação do Teorema
 
-O Teorema de Castigliano afirma que o deslocamento \( u_i \) em uma direção \( i \) devido a uma força \( F_i \) é dado pela derivada parcial da energia de deformação total do sistema \( U \) com relação à força:
+O Teorema de Castigliano afirma que o deslocamento ($u_i$) em uma direção \( i \) devido a uma força \( F_i \) é dado pela derivada parcial da energia de deformação total do sistema \( U \) com relação à força:
 
-\[ u_i = \frac{\partial U}{\partial F_i} \]
+$$ u_i = \frac{\partial U}{\partial F_i} $$
 
 onde:
 - \( U \) é a energia total de deformação do sistema,
