@@ -32,14 +32,14 @@ Para usar o Enedina, siga estas etapas:
    ```python
    from enedina_model import EnedinaModel
 
-   model = EnedinaModel(text_num_tokens, image_input_dim, equation_input_dim, diagram_input_dim)
+   model = EnedinaModel(text_num_tokens, image_input_dim, equation_input_dim)
    ```
 
-4. Prepare suas entradas (texto, imagem, equação e diagrama) no formato adequado.
+4. Prepare suas entradas (texto, imagem e equação) no formato adequado.
 
 5. Passe as entradas para o modelo e obtenha a saída:
    ```python
-   output = model(text_input, image_input, equation_input, diagram_input)
+   output = model(text_input, image_input, equation_input)
    ```
 
 Para obter mais detalhes sobre os parâmetros e a configuração do modelo, consulte o código-fonte e a documentação neste repositório.
