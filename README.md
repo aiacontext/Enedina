@@ -1,5 +1,7 @@
 # Enedina: Grande Modelo de Linguagem Multimodal para Engenharia Brasileira
 
+![Enedina Arquitetura](arquitetura_enedina_llm.png)
+
 Este repositório hospeda a Prova de Conceito (PoC) do LLM multimodal Enedina, que é capaz de integrar entradas de texto, imagem e equações utilizando uma arquitetura avançada baseada em Transformers com atenção cruzada.
 
 ## Visão Geral
